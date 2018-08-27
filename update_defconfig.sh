@@ -1,5 +1,6 @@
-export ANDROID_ROOT=../../../..
-export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-4.9/
+export ANDROID_ROOT=../../../../../../../..
+export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-4.9
+export KERNEL_CFG=arch/arm64/configs/sony
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
 export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
 
@@ -34,7 +35,7 @@ esac
 
 for device in $DEVICE; do \
     rm -r $KERNEL_TMP
-    ARCH=arm64 O=$KERNEL_TMP scripts/kconfig/merge_config.sh ../kernel-defconfig/base_$platform"_"$device\_defconfig ../kernel-defconfig/android-base.cfg ../kernel-defconfig/android-base-arm64.cfg ../kernel-defconfig/android-recommended.cfg ../kernel-defconfig/android-extra.cfg
+    ARCH=arm64 O=$KERNEL_TMP scripts/kconfig/merge_config.sh $KERNEL_CFG/base_$platform"_"$device\_defconfig $KERNEL_CFG/android-base.cfg $KERNEL_CFG/android-base-arm64.cfg $KERNEL_CFG/android-recommended.cfg $KERNEL_CFG/android-extra.cfg
     $BUILD savedefconfig
     mv $KERNEL_TMP/defconfig ./arch/arm64/configs/aosp_$platform"_"$device\_defconfig
 done
