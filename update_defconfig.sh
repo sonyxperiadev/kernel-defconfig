@@ -35,7 +35,7 @@ esac
 
 for device in $DEVICE; do \
     rm -r $KERNEL_TMP
-    ARCH=arm64 O=$KERNEL_TMP scripts/kconfig/merge_config.sh $KERNEL_CFG/base_$platform"_"$device\_defconfig $KERNEL_CFG/android-base.cfg $KERNEL_CFG/android-base-arm64.cfg $KERNEL_CFG/android-recommended.cfg $KERNEL_CFG/android-extra.cfg
+    ARCH=arm64 O=$KERNEL_TMP scripts/kconfig/merge_config.sh $KERNEL_CFG/base_$platform"_"$device\_defconfig $KERNEL_CFG/android-base.config $KERNEL_CFG/android-base-arm64.config $KERNEL_CFG/android-recommended.config $KERNEL_CFG/android-extra.config
     $BUILD savedefconfig
     mv $KERNEL_TMP/defconfig ./arch/arm64/configs/aosp_$platform"_"$device\_defconfig
 done
