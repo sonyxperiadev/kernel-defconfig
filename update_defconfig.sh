@@ -37,13 +37,26 @@ esac
 for device in $DEVICE; do \
     rm -rf $KERNEL_TMP
     mkdir -p $KERNEL_TMP
-    ARCH=arm64 O=$KERNEL_TMP scripts/kconfig/merge_config.sh $KERNEL_CFG/base_$platform"_"$device\_defconfig $KERNEL_CFG/android-base.config $KERNEL_CFG/android-base-arm64.config $KERNEL_CFG/android-recommended.config $KERNEL_CFG/android-extra.config
-    $BUILD savedefconfig
+    echo "================================================="
+    echo "Platform -> ${platform} :: Device -> $device"
+    echo "Running scripts/kconfig/merge_config.sh ..."
+    ret=$(ARCH=arm64 O=${KERNEL_TMP} scripts/kconfig/merge_config.sh ${KERNEL_CFG}/base_${platform}"_"${device}\_defconfig ${KERNEL_CFG}/android-base.config ${KERNEL_CFG}/android-base-arm64.config ${KERNEL_CFG}/android-recommended.config ${KERNEL_CFG}/android-extra.config 2>&1);
+    case "$ret" in  
+        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;; 
+    esac
+    echo "Building new defconfig ..."
+    ret=$(${BUILD} savedefconfig 2>&1);
+    case "$ret" in  
+        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;; 
+    esac
     mv $KERNEL_TMP/defconfig ./arch/arm64/configs/aosp_$platform"_"$device\_defconfig
 done
 done
 
-make mrproper
+echo "================================================="
+echo "Clean up environment"
+ret=$(make mrproper 2>&1)
+echo "Done!"
 rm -rf $KERNEL_TMP
 unset ANDROID_ROOT
 unset KERNEL_TOP
