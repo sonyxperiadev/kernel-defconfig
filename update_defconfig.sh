@@ -9,7 +9,7 @@ LOIRE="suzu kugo blanc"
 TONE="dora kagura keyaki"
 YOSHINO="lilac maple poplar"
 NILE="discovery pioneer voyager"
-TAMA="akari apollo"
+TAMA="akari apollo akatsuki"
 
 PLATFORMS="loire tone yoshino nile tama"
 
