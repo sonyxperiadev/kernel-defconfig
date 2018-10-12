@@ -5,6 +5,20 @@ export KERNEL_CFG=arch/arm64/configs/sony
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
 export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
 
+# These values must be changed for forks!
+KERNEL_DEFCONFIG_URL="https://github.com/sonyxperiadev/kernel-defconfig"
+KERNEL_DEFCONFIG_BRANCH="aosp/LE.UM.2.3.2.r1.4"
+
+KERNEL_DEFCONFIG_HEAD=$(git -C ${KERNEL_CFG} rev-parse HEAD)
+read -r -d '' KERNEL_COMMIT_MESSAGE << EOM
+arm64: configs: somc: update auto-generated defconfig for all platforms
+
+This update is generated automatically by using the script "update_defconfig.sh" which is maintained at this linked project below:
+${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_BRANCH}
+HEAD of the project used to prepare this commit:
+${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
+EOM
+
 LOIRE="suzu kugo blanc"
 TONE="dora kagura keyaki"
 YOSHINO="lilac maple poplar"
@@ -78,6 +92,10 @@ echo "Clean up environment"
 ret=$(make mrproper 2>&1)
 echo "Done!"
 rm -rf $KERNEL_TMP
+
+echo "You can now commit the updated defconfig with the following as the commit message:"
+echo "${KERNEL_COMMIT_MESSAGE}"
+
 unset ANDROID_ROOT
 unset KERNEL_TOP
 unset KERNEL_CFG
