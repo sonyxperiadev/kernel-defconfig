@@ -35,9 +35,20 @@ tama)
     DRM="true";;
 esac
 
+echo "================================================="
+echo "Your Environment:"
+echo "ANDROID_ROOT: ${ANDROID_ROOT}"
+echo "KERNEL_TOP  : ${KERNEL_TOP}"
+echo "KERNEL_CFG  : ${KERNEL_CFG}"
+echo "KERNEL_TMP  : ${KERNEL_TMP}"
 for device in $DEVICE; do \
-    rm -rf $KERNEL_TMP
-    mkdir -p $KERNEL_TMP
+    ret=$(rm -rf ${KERNEL_TMP} 2>&1);
+    ret=$(mkdir -p ${KERNEL_TMP} 2>&1);
+    if [ ! -d ${KERNEL_TMP} ] ; then
+        echo "Check your environment";
+        echo "ERROR: ${ret}";
+        exit 1;
+    fi
     echo "================================================="
     echo "Platform -> ${platform} :: Device -> $device"
     echo "Running scripts/kconfig/merge_config.sh ..."
@@ -62,12 +73,12 @@ for device in $DEVICE; do \
     fi
 
     case "$ret" in
-        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;; 
+        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;;
     esac
     echo "Building new defconfig ..."
     ret=$(${BUILD} savedefconfig 2>&1);
     case "$ret" in
-        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;; 
+        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;;
     esac
     mv $KERNEL_TMP/defconfig ./arch/arm64/configs/aosp_$platform"_"$device\_defconfig
 done
