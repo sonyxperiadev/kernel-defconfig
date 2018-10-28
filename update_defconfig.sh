@@ -5,6 +5,8 @@ export KERNEL_CFG=arch/arm64/configs/sony
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
 export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
 
+cd $KERNEL_TOP/kernel
+
 # These values must be changed for forks!
 KERNEL_DEFCONFIG_URL="https://github.com/sonyxperiadev/kernel-defconfig"
 KERNEL_DEFCONFIG_BRANCH="aosp/LE.UM.2.3.2.r1.4"
@@ -26,8 +28,6 @@ NILE="discovery pioneer voyager"
 TAMA="akari apollo akatsuki"
 
 PLATFORMS="loire tone yoshino nile tama"
-
-cd $KERNEL_TOP/kernel
 
 for platform in $PLATFORMS; do \
 
