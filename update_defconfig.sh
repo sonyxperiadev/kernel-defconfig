@@ -43,7 +43,7 @@ yoshino)
     DRM="false";;
 nile)
     DEVICE=$NILE;
-    DRM="false";;
+    DRM="true";;
 tama)
     DEVICE=$TAMA;
     DRM="true";;
