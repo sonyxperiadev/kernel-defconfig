@@ -25,9 +25,10 @@ LOIRE="suzu kugo blanc"
 TONE="dora kagura keyaki"
 YOSHINO="lilac maple poplar"
 NILE="discovery pioneer voyager"
+GANGES="kirin mermaid"
 TAMA="akari apollo akatsuki"
 
-PLATFORMS="loire tone yoshino nile tama"
+PLATFORMS="loire tone yoshino nile ganges tama"
 
 for platform in $PLATFORMS; do \
 
@@ -44,6 +45,9 @@ yoshino)
 nile)
     DEVICE=$NILE;
     DRM="true";;
+ganges)
+    DEVICE=$GANGES;
+    DRM="false";;
 tama)
     DEVICE=$TAMA;
     DRM="true";;
