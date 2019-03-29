@@ -47,7 +47,7 @@ nile)
     DRM="true";;
 ganges)
     DEVICE=$GANGES;
-    DRM="false";;
+    DRM="true";;
 tama)
     DEVICE=$TAMA;
     DRM="true";;
