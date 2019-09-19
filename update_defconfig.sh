@@ -11,7 +11,7 @@ cd $KERNEL_TOP/kernel
 
 # These values must be changed for forks!
 KERNEL_DEFCONFIG_URL="https://github.com/sonyxperiadev/kernel-defconfig"
-KERNEL_DEFCONFIG_BRANCH="aosp/LE.UM.7.1.r1"
+KERNEL_DEFCONFIG_BRANCH="aosp/LA.UM.7.1.r1"
 
 KERNEL_DEFCONFIG_HEAD=$(git -C ${KERNEL_CFG} rev-parse HEAD)
 read -r -d '' KERNEL_COMMIT_MESSAGE << EOM
