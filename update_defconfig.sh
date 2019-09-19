@@ -54,10 +54,9 @@ ganges)
 tama)
     DEVICE=$TAMA;
     SOC="sdm845";;
-KUMANO)
+kumano)
     DEVICE=$KUMANO;
     SOC="sm8150";;
-
 esac
 
 echo "================================================="
