@@ -29,7 +29,7 @@ YOSHINO="lilac maple poplar"
 NILE="discovery pioneer voyager"
 GANGES="kirin mermaid"
 TAMA="akari apollo akatsuki"
-KUMANO="griffin"
+KUMANO="griffin bahamut"
 
 PLATFORMS="loire tone yoshino nile ganges tama kumano"
 
