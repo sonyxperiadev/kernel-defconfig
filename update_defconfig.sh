@@ -77,11 +77,11 @@ for device in $DEVICE; do \
     echo "SOC -> ${SOC} :: Platform -> ${platform} :: Device -> $device"
     echo "Running scripts/kconfig/merge_config.sh ..."
     ret=$(ARCH=arm64 O=${KERNEL_TMP} scripts/kconfig/merge_config.sh \
-        ${KERNEL_CFG}/base_${SOC}_defconfig \
-        ${KERNEL_CFG}/base_${platform}"_"${device}\_defconfig \
         ${KERNEL_CFG}/android-base.config \
         ${KERNEL_CFG}/android-recommended.config \
         ${KERNEL_CFG}/android-recommended-arm64.config \
+        ${KERNEL_CFG}/base_${SOC}_defconfig \
+        ${KERNEL_CFG}/base_${platform}"_"${device}\_defconfig \
         ${KERNEL_CFG}/android-extra.config 2>&1);
 
 
