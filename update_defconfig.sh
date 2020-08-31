@@ -30,8 +30,9 @@ NILE="discovery pioneer voyager"
 GANGES="kirin mermaid"
 TAMA="akari apollo akatsuki"
 KUMANO="griffin bahamut"
+SEINE="pdx201"
 
-PLATFORMS="loire tone yoshino nile ganges tama kumano"
+PLATFORMS="loire tone yoshino nile ganges tama kumano seine"
 
 for platform in $PLATFORMS; do \
 
@@ -57,6 +58,9 @@ tama)
 kumano)
     DEVICE=$KUMANO;
     SOC="sm8150";;
+seine)
+    DEVICE=$SEINE;
+    SOC="sm6125";;
 esac
 
 echo "================================================="
