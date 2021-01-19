@@ -23,45 +23,13 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
-LOIRE="suzu kugo blanc"
-TONE="dora kagura keyaki"
-YOSHINO="lilac maple poplar"
-NILE="discovery pioneer voyager"
-GANGES="kirin mermaid"
-TAMA="akari apollo akatsuki"
-KUMANO="griffin bahamut"
-SEINE="pdx201"
 EDO="pdx203 pdx206"
 
-PLATFORMS="loire tone yoshino nile ganges tama kumano seine"
+PLATFORMS="edo"
 
 for platform in $PLATFORMS; do \
 
 case $platform in
-loire)
-    DEVICE=$LOIRE;
-    SOC="msm8956";;
-tone)
-    DEVICE=$TONE;
-    SOC="msm8996";;
-yoshino)
-    DEVICE=$YOSHINO;
-    SOC="msm8998";;
-nile)
-    DEVICE=$NILE;
-    SOC="sdm6xx";;
-ganges)
-    DEVICE=$GANGES;
-    SOC="sdm6xx";;
-tama)
-    DEVICE=$TAMA;
-    SOC="sdm845";;
-kumano)
-    DEVICE=$KUMANO;
-    SOC="sm8150";;
-seine)
-    DEVICE=$SEINE;
-    SOC="sm6125";;
 edo)
     DEVICE=$EDO;
     SOC="sm8250";;
