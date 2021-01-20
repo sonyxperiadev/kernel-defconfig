@@ -4,7 +4,7 @@ export ANDROID_ROOT=$(pwd)
 export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-4.19/
 export KERNEL_CFG=arch/arm64/configs/sony
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
-export CROSS_COMPILE=prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+#export CROSS_COMPILE=prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
 
 cd $KERNEL_TOP/kernel
