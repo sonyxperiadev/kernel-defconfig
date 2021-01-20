@@ -63,7 +63,7 @@ for device in $DEVICE; do \
 
 
     case "$ret" in
-        *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;;
+        *"error"*|*"ERROR"*|*"Exit"*) echo "ERROR: $ret"; exit 1;;
     esac
     echo "Building new defconfig ..."
     ret=$(${BUILD} savedefconfig 2>&1);
