@@ -24,8 +24,9 @@ ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
 EDO="pdx203 pdx206"
+LENA="pdx213"
 
-PLATFORMS="edo"
+PLATFORMS="edo lena"
 
 for platform in $PLATFORMS; do \
 
@@ -33,6 +34,9 @@ case $platform in
 edo)
     DEVICE=$EDO;
     SOC="sm8250";;
+lena)
+    DEVICE=$LENA;
+    SOC="sm6350";;
 esac
 
 echo "================================================="
