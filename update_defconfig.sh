@@ -23,15 +23,19 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
+NILE="discovery pioneer voyager"
 GANGES="kirin mermaid"
 EDO="pdx203 pdx206"
 LENA="pdx213"
 
-PLATFORMS="ganges edo lena"
+PLATFORMS="nile ganges edo lena"
 
 for platform in $PLATFORMS; do \
 
 case $platform in
+nile)
+    DEVICE=$NILE;
+    SOC="sdm6xx";;
 ganges)
     DEVICE=$GANGES;
     SOC="sdm6xx";;
