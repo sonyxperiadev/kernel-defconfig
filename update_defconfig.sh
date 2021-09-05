@@ -23,14 +23,18 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
+GANGES="kirin mermaid"
 EDO="pdx203 pdx206"
 LENA="pdx213"
 
-PLATFORMS="edo lena"
+PLATFORMS="ganges edo lena"
 
 for platform in $PLATFORMS; do \
 
 case $platform in
+ganges)
+    DEVICE=$GANGES;
+    SOC="sdm6xx";;
 edo)
     DEVICE=$EDO;
     SOC="sm8250";;
