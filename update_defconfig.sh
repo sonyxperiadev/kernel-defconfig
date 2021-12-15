@@ -24,11 +24,12 @@ ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
 NILE="discovery pioneer voyager"
+TAMA="apollo akari akatsuki"
 GANGES="kirin mermaid"
 EDO="pdx203 pdx206"
 LENA="pdx213"
 
-PLATFORMS="nile ganges edo lena"
+PLATFORMS="nile ganges tama edo lena"
 
 for platform in $PLATFORMS; do \
 
@@ -39,6 +40,9 @@ nile)
 ganges)
     DEVICE=$GANGES;
     SOC="sdm6xx";;
+tama)
+    DEVICE=$TAMA;
+    SOC="sdm845";;
 edo)
     DEVICE=$EDO;
     SOC="sm8250";;
