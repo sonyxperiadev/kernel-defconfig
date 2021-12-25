@@ -52,7 +52,8 @@ for device in $DEVICE; do \
     echo "================================================="
     echo "SOC -> ${SOC} :: Platform -> ${platform} :: Device -> $device"
     echo "Running scripts/kconfig/merge_config.sh ..."
-    ret=$(ARCH=arm64 O=${KERNEL_TMP} scripts/kconfig/merge_config.sh \
+    ret=$(ARCH=arm64 scripts/kconfig/merge_config.sh \
+        -O "${KERNEL_TMP}" \
         ${KERNEL_CFG}/android-base.config \
         ${KERNEL_CFG}/android-recommended.config \
         ${KERNEL_CFG}/android-recommended-arm64.config \
@@ -75,8 +76,6 @@ done
 done
 
 echo "================================================="
-echo "Clean up environment"
-ret=$(make mrproper 2>&1)
 echo "Done!"
 rm -rf $KERNEL_TMP
 
