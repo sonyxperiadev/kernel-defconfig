@@ -23,7 +23,7 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
-SAGAMI="pdx215"
+SAGAMI="pdx214 pdx215"
 
 PLATFORMS="sagami"
 
