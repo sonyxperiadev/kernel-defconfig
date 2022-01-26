@@ -26,10 +26,11 @@ EOM
 NILE="discovery pioneer voyager"
 TAMA="apollo akari akatsuki"
 GANGES="kirin mermaid"
+SEINE="pdx201"
 EDO="pdx203 pdx206"
 LENA="pdx213"
 
-PLATFORMS="nile ganges tama edo lena"
+PLATFORMS="nile ganges tama seine edo lena"
 
 for platform in $PLATFORMS; do \
 
@@ -43,6 +44,9 @@ ganges)
 tama)
     DEVICE=$TAMA;
     SOC="sdm845";;
+seine)
+    DEVICE=$SEINE;
+    SOC="sm6125";;
 edo)
     DEVICE=$EDO;
     SOC="sm8250";;
