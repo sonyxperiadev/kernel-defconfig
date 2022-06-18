@@ -24,8 +24,9 @@ ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
 SAGAMI="pdx214 pdx215"
+MURRAY="pdx225"
 
-PLATFORMS="sagami"
+PLATFORMS="sagami murray"
 
 for platform in $PLATFORMS; do \
 
@@ -33,6 +34,10 @@ case $platform in
 sagami)
     DEVICE=$SAGAMI;
     SOC="sm8350";;
+
+murray)
+    DEVICE=$MURRAY;
+    SOC="sm6375";;
 esac
 
 echo "================================================="
