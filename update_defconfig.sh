@@ -58,8 +58,6 @@ for platform in $PLATFORMS; do \
         ${KERNEL_CFG}/base_${SOC}_defconfig \
         ${KERNEL_CFG}/base_${platform}_defconfig 2>&1);
 
-
-
     case "$ret" in
         *"error"*|*"ERROR"*|*"Exit"*) echo "ERROR: $ret"; exit 1;;
     esac
