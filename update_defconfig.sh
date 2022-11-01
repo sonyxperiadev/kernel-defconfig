@@ -23,7 +23,7 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
-NAGARA="pdx223"
+NAGARA="pdx223 pdx224"
 
 PLATFORMS="nagara"
 
