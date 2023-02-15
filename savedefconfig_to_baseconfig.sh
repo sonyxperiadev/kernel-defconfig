@@ -8,10 +8,13 @@ echo "Processing file: $1"
 echo "Output file: $2"
 
 if [ -f "$1" ]; then
-    comm -1 -3 <(sort android-base.config) <(sort $1) > $2 && \
-    comm -1 -3 <(sort android-recommended.config) <(sort $1) > $2 && \
-    comm -1 -3 <(sort android-recommended-arm64.config) <(sort $1) > $2 && \
-    comm -1 -3 <(sort android-extra.config) <(sort $1) > $2 && \
+    cat android-base.config \
+        android-recommended.config \
+        android-recommended-arm64.config > \
+        /tmp/android_recommended && \
+    sort -o /tmp/android_recommended /tmp/android_recommended && \
+    comm -1 -3 /tmp/android_recommended <(sort $1) > $2 && \
+    rm /tmp/android_recommended && \
     echo "$2 is ready!"
 else
     echo "File '$1' does not exist."
