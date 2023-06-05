@@ -23,26 +23,23 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
-NAGARA="pdx223 pdx224"
 
 PLATFORMS="nagara"
 
 for platform in $PLATFORMS; do \
 
-case $platform in
-nagara)
-    DEVICE=$NAGARA;
-    SOC="sm8450";;
+    case $platform in
+    nagara)
+        SOC="sm8450";;
 
-esac
+    esac
 
-echo "================================================="
-echo "Your Environment:"
-echo "ANDROID_ROOT: ${ANDROID_ROOT}"
-echo "KERNEL_TOP  : ${KERNEL_TOP}"
-echo "KERNEL_CFG  : ${KERNEL_CFG}"
-echo "KERNEL_TMP  : ${KERNEL_TMP}"
-for device in $DEVICE; do \
+    echo "================================================="
+    echo "Your Environment:"
+    echo "ANDROID_ROOT: ${ANDROID_ROOT}"
+    echo "KERNEL_TOP  : ${KERNEL_TOP}"
+    echo "KERNEL_CFG  : ${KERNEL_CFG}"
+    echo "KERNEL_TMP  : ${KERNEL_TMP}"
     ret=$(rm -rf ${KERNEL_TMP} 2>&1);
     ret=$(mkdir -p ${KERNEL_TMP} 2>&1);
     if [ ! -d ${KERNEL_TMP} ] ; then
@@ -51,7 +48,7 @@ for device in $DEVICE; do \
         exit 1;
     fi
     echo "================================================="
-    echo "SOC -> ${SOC} :: Platform -> ${platform} :: Device -> $device"
+    echo "SOC -> ${SOC} :: Platform -> ${platform}"
     echo "Running scripts/kconfig/merge_config.sh ..."
     ret=$(ARCH=arm64 scripts/kconfig/merge_config.sh \
         -O "${KERNEL_TMP}" \
@@ -59,7 +56,7 @@ for device in $DEVICE; do \
         ${KERNEL_CFG}/android-recommended.config \
         ${KERNEL_CFG}/android-recommended-arm64.config \
         ${KERNEL_CFG}/base_${SOC}_defconfig \
-        ${KERNEL_CFG}/base_${platform}"_"${device}\_defconfig 2>&1);
+        ${KERNEL_CFG}/base_${platform}_defconfig 2>&1);
 
 
 
@@ -71,8 +68,7 @@ for device in $DEVICE; do \
     case "$ret" in
         *"error"*|*"ERROR"*) echo "ERROR: $ret"; exit 1;;
     esac
-    mv $KERNEL_TMP/defconfig ./arch/arm64/configs/aosp_$platform"_"$device\_defconfig
-done
+    mv $KERNEL_TMP/defconfig ./arch/arm64/configs/aosp_${platform}_defconfig
 done
 
 echo "================================================="
