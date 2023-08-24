@@ -25,8 +25,9 @@ EOM
 
 SAGAMI="pdx214 pdx215"
 MURRAY="pdx225"
+ZAMBEZI="pdx235"
 
-PLATFORMS="sagami murray"
+PLATFORMS="sagami murray zambezi"
 
 for platform in $PLATFORMS; do \
 
@@ -37,6 +38,10 @@ sagami)
 
 murray)
     DEVICE=$MURRAY;
+    SOC="sm6375";;
+
+zambezi)
+    DEVICE=$ZAMBEZI;
     SOC="sm6375";;
 esac
 
