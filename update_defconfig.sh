@@ -1,17 +1,16 @@
 cd ../../../../../../../..
 ls
 export ANDROID_ROOT=$(pwd)
-export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-5.10/
+export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-5.15/
 export KERNEL_CFG=arch/arm64/configs/sony
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
-#export CROSS_COMPILE=prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
 
 cd $KERNEL_TOP/kernel
 
 # These values must be changed for forks!
 KERNEL_DEFCONFIG_URL="https://github.com/sonyxperiadev/kernel-defconfig"
-KERNEL_DEFCONFIG_BRANCH="aosp/K.P.1.0.r1"
+KERNEL_DEFCONFIG_BRANCH="aosp/K.P.2.0.r1"
 
 KERNEL_DEFCONFIG_HEAD=$(git -C ${KERNEL_CFG} rev-parse HEAD)
 read -r -d '' KERNEL_COMMIT_MESSAGE << EOM
