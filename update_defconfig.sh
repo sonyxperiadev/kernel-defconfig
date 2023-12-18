@@ -54,6 +54,7 @@ for platform in $PLATFORMS; do \
     ret=$(ARCH=arm64 scripts/kconfig/merge_config.sh \
         -O "${KERNEL_TMP}" \
         ${KERNEL_CFG}/android-base.config \
+        ${KERNEL_CFG}/gki_defconfig \
         ${KERNEL_CFG}/base_${SOC}_defconfig \
         ${KERNEL_CFG}/base_${platform}_defconfig 2>&1);
 
