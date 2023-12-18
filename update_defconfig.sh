@@ -65,8 +65,6 @@ for device in $DEVICE; do \
     ret=$(ARCH=arm64 scripts/kconfig/merge_config.sh \
         -O "${KERNEL_TMP}" \
         ${KERNEL_CFG}/android-base.config \
-        ${KERNEL_CFG}/android-recommended.config \
-        ${KERNEL_CFG}/android-recommended-arm64.config \
         ${KERNEL_CFG}/base_${SOC}_defconfig \
         ${KERNEL_CFG}/base_${platform}"_"${device}\_defconfig 2>&1);
 
