@@ -9,8 +9,6 @@ echo "Output file: $2"
 
 if [ -f "$1" ]; then
     cat android-base.config \
-        android-recommended.config \
-        android-recommended-arm64.config > \
         /tmp/android_recommended && \
     sort -o /tmp/android_recommended /tmp/android_recommended && \
     comm -1 -3 /tmp/android_recommended <(sort $1) > $2 && \
