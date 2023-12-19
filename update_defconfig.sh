@@ -4,6 +4,7 @@ export ANDROID_ROOT=$(pwd)
 export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-5.15/
 export KERNEL_CFG=arch/arm64/configs/sony
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
+export CROSS_COMPILE=aarch64-linux-gnu-
 export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
 
 cd $KERNEL_TOP/kernel
