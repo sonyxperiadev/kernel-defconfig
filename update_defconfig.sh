@@ -24,13 +24,15 @@ ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
 
-PLATFORMS="nagara"
+PLATFORMS="nagara columbia"
 
 for platform in $PLATFORMS; do \
 
     case $platform in
     nagara)
         SOC="sm8450";;
+    columbia)
+        SOC="sm6450";;
 
     esac
 
