@@ -8,8 +8,8 @@ echo "Processing file: $1"
 echo "Output file: $2"
 
 if [ -f "$1" ]; then
-    comm -1 -3 <(sort android-base.config) <(sort $1) > $2 && \
-    comm -1 -3 <(sort gki_defconfig) <(sort $1) > $2 && \
+    grep -vf android-base.config $1 > $2 && \
+    grep -vf gki_defconfig $1 > $2 && \
     echo "$2 is ready!"
 else
     echo "File '$1' does not exist."
