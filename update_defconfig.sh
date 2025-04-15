@@ -24,11 +24,13 @@ ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
 
-PLATFORMS="columbia"
+PLATFORMS="murray columbia"
 
 for platform in $PLATFORMS; do \
 
     case $platform in
+    murray)
+        SOC="sm6375";;
     columbia)
         SOC="sm6450";;
     esac
