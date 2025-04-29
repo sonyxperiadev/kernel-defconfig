@@ -1,11 +1,30 @@
-cd ../../../../../../../..
-ls
-export ANDROID_ROOT=$(pwd)
-export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-5.10/
-export KERNEL_CFG=arch/arm64/configs/sony
-export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
-export CROSS_COMPILE=aarch64-linux-gnu-
-export BUILD="make O=$KERNEL_TMP ARCH=arm64 LLVM=1 LLVM_IAS=1 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
+find_build_top() {
+    local dir=$PWD
+    local max_depth=10
+    while [ $max_depth -gt 0 ]; do
+        if [ -e "$dir/.repo" ]; then
+            realpath "$dir"
+            return 0
+        fi
+        dir=$(dirname "$dir")
+        max_depth=$((max_depth - 1))
+    done
+    return 1
+}
+
+if [ -z "$ANDROID_BUILD_TOP" ]; then
+    if ! ANDROID_ROOT=$(find_build_top); then
+        echo "Error: Could not find the Android root (no .repo found)" >&2
+        exit 1
+    fi
+else
+    ANDROID_ROOT=$(realpath "$ANDROID_BUILD_TOP")
+fi
+
+KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-5.10/
+KERNEL_CFG=arch/arm64/configs/sony
+KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
+BUILD="make O=$KERNEL_TMP ARCH=arm64 LLVM=1 LLVM_IAS=1 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc)"
 
 cd $KERNEL_TOP/kernel
 
@@ -51,7 +70,7 @@ for platform in $PLATFORMS; do \
     echo "================================================="
     echo "SOC -> ${SOC} :: Platform -> ${platform}"
     echo "Running scripts/kconfig/merge_config.sh ..."
-    ret=$(ARCH=arm64 LLVM=1 LLVM_IAS=1 scripts/kconfig/merge_config.sh \
+    ret=$(ARCH=arm64 LLVM=1 LLVM_IAS=1 CROSS_COMPILE=aarch64-linux-gnu- scripts/kconfig/merge_config.sh \
         -O "${KERNEL_TMP}" \
         ${KERNEL_CFG}/android-base.config \
         ${KERNEL_CFG}/gki_defconfig \
@@ -77,9 +96,3 @@ rm -rf $KERNEL_TMP
 
 echo "You can now commit the updated defconfig with the following as the commit message:"
 echo "${KERNEL_COMMIT_MESSAGE}"
-
-unset ANDROID_ROOT
-unset KERNEL_TOP
-unset KERNEL_CFG
-unset KERNEL_TMP
-unset BUILD
