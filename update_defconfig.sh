@@ -26,6 +26,20 @@ KERNEL_CFG=arch/arm64/configs/sony
 KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
 BUILD="make O=$KERNEL_TMP ARCH=arm64 LLVM=1 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc)"
 
+echo "================================================="
+echo "Your Environment:"
+echo "ANDROID_ROOT: ${ANDROID_ROOT}"
+echo "KERNEL_TOP  : ${KERNEL_TOP}"
+echo "KERNEL_CFG  : ${KERNEL_CFG}"
+echo "KERNEL_TMP  : ${KERNEL_TMP}"
+ret=$(rm -rf ${KERNEL_TMP} 2>&1);
+ret=$(mkdir -p ${KERNEL_TMP} 2>&1);
+if [ ! -d ${KERNEL_TMP} ] ; then
+    echo "Check your environment";
+    echo "ERROR: ${ret}";
+    exit 1;
+fi
+
 cd $KERNEL_TOP/kernel
 
 # These values must be changed for forks!
@@ -42,7 +56,6 @@ HEAD of the project used to prepare this commit:
 ${KERNEL_DEFCONFIG_URL}/tree/${KERNEL_DEFCONFIG_HEAD}
 EOM
 
-
 PLATFORMS="nagara yodo"
 
 for platform in $PLATFORMS; do \
@@ -55,19 +68,6 @@ for platform in $PLATFORMS; do \
 
     esac
 
-    echo "================================================="
-    echo "Your Environment:"
-    echo "ANDROID_ROOT: ${ANDROID_ROOT}"
-    echo "KERNEL_TOP  : ${KERNEL_TOP}"
-    echo "KERNEL_CFG  : ${KERNEL_CFG}"
-    echo "KERNEL_TMP  : ${KERNEL_TMP}"
-    ret=$(rm -rf ${KERNEL_TMP} 2>&1);
-    ret=$(mkdir -p ${KERNEL_TMP} 2>&1);
-    if [ ! -d ${KERNEL_TMP} ] ; then
-        echo "Check your environment";
-        echo "ERROR: ${ret}";
-        exit 1;
-    fi
     echo "================================================="
     echo "SOC -> ${SOC} :: Platform -> ${platform}"
     echo "Running scripts/kconfig/merge_config.sh ..."
